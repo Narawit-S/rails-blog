@@ -4,25 +4,10 @@
 
 <h2>Comments</h2>
 
-<% @article.comments.each do |comment| %>
-    <h3><%= comment.commenter %></h3>
-    <p><%= comment.body %></p>
-<% end %>
+<%= render @article.comments %>
 
 <h2>Add new comment</h2>
 
-<%= form_with model: [@article, @article.comments.build] do |form| %>
-    <div>
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
-    <div>
-    <div>
-        <%= form.label :body %><br>
-        <%= form.text_area   :body %>
-    <div>
-    <div>
-        <%= form.submit %>
-    </div>
-<% end %>
+<%= render "comments/form" %>
 <br>
 <%= link_to "Delete", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>

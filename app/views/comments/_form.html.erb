@@ -8,6 +8,11 @@
         <%= form.text_area   :body %>
     <div>
     <div>
+        <%= form.label :status %><br>
+        <%= form.select :status, ['published', 'privated', 'archived'], selected: 'published' %>
+    <div>
+    <br>
+    <div>
         <%= form.submit %>
     </div>
 <% end %>

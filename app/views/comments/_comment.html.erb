@@ -1,2 +1,4 @@
-<h3><%= comment.commenter %></h3>
-<p><%= comment.body %></p>
+<% unless comment.archived? %>
+    <h3><%= comment.commenter %></h3>
+    <p><%= comment.body %></p>
+<% end %>

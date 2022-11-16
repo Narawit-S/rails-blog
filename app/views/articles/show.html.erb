@@ -11,3 +11,5 @@
 <%= render "comments/form" %>
 <br>
 <%= link_to "Delete", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<br>
+<%= link_to "Home", articles_path %>

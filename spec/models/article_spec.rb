@@ -27,7 +27,7 @@ RSpec.describe Article, type: :model do
   describe 'assosiation' do
     subject(:article) { create(:article) }
     
-    it { is_expected.to have_many(:comments)}
+    it { is_expected.to have_many(:comments).dependent(:destroy)}
   end
 
   describe 'validate' do

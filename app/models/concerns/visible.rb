@@ -1,7 +1,8 @@
 module Visible 
     extend ActiveSupport::Concern
 
-    VALID_STATUS = ['published', 'privated', 'archived']
+    VALID_STATUS = %w[published privated archived].freeze
+    
     included do
         validates :status, inclusion: { in: VALID_STATUS }
     end

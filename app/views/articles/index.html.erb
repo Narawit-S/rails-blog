@@ -17,6 +17,8 @@
   <button>
     <%= link_to "New article", new_article_path %>
   </button>
+  <br>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
   
 </ul>
 

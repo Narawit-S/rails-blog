@@ -35,10 +35,34 @@ shared_examples 'Visible' do
   end
 
   describe 'archived' do
-    subject { create(described_class.to_s.underscore.to_sym) }
+    subject { record.archived? }
 
-    it 'result' do
-      expect(subject.archived?).to be_in([true, false])
+    let(:record) { create(described_class.to_s.underscore.to_sym) }
+
+    context 'when archived' do
+      before do
+        record.update(status: 'archived')
+      end
+
+      it { is_expected.to eq true }
+    end
+
+    context 'when not archived' do
+      context 'but published' do
+        before do
+          record.update(status: 'published')
+        end
+
+        it { is_expected.to eq false }
+      end
+
+      context 'but privated' do
+        before do
+          record.update(status: 'privated')
+        end
+
+        it { is_expected.to eq false }
+      end
     end
   end
 

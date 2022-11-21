@@ -3,6 +3,6 @@ FactoryBot.define do
     commenter { 'commenter'}
     body { 'this body must be 10'}
     status { 'published'}
-    article_id { create(:article).id }
+    article { create(:article) }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: articles
@@ -26,15 +28,15 @@ RSpec.describe Article, type: :model do
 
   describe 'assosiation' do
     subject(:article) { create(:article) }
-    
-    it { is_expected.to have_many(:comments).dependent(:destroy)}
+
+    it { is_expected.to have_many(:comments).dependent(:destroy) }
   end
 
   describe 'validate' do
     subject(:article) { create(:article) }
 
-    it { is_expected.to validate_presence_of(:title)}
-    it { is_expected.to validate_presence_of(:body)}
-    it { is_expected.to validate_length_of(:body).is_at_least(10)}
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_length_of(:body).is_at_least(10) }
   end
 end

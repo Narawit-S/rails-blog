@@ -1,17 +1,18 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 shared_examples 'Visible' do
   describe 'constant' do
     subject { described_class::VALID_STATUS }
 
-    it { is_expected.to eq %w[published privated archived]}
+    it { is_expected.to eq %w[published privated archived] }
   end
 
   describe 'validate' do
     subject { create(described_class.to_s.underscore.to_sym) }
 
-    it { is_expected.to validate_inclusion_of(:status).in_array described_class::VALID_STATUS}
+    it { is_expected.to validate_inclusion_of(:status).in_array described_class::VALID_STATUS }
   end
 
   describe 'public_count' do
@@ -26,11 +27,11 @@ shared_examples 'Visible' do
     end
 
     context 'is positive number' do
-      it { is_expected.to be >= 0}
+      it { is_expected.to be >= 0 }
     end
 
     context 'is correct number' do
-      it { is_expected.to eq published_number}
+      it { is_expected.to eq published_number }
     end
   end
 
@@ -65,5 +66,4 @@ shared_examples 'Visible' do
       end
     end
   end
-
 end

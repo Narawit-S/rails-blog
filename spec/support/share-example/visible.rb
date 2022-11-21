@@ -15,9 +15,23 @@ shared_examples 'Visible' do
   end
 
   describe 'public_count' do
-    subject { described_class::public_count }
+    subject { described_class.public_count }
 
-    it { is_expected.to be >= 0 }
+    let(:record) { described_class.to_s.underscore.to_sym }
+    let(:published_number) { 4 }
+
+    before do
+      create_list(record, published_number, status: 'published')
+      create_list(record, 2, status: 'archived')
+    end
+
+    context 'is positive number' do
+      it { is_expected.to be >= 0}
+    end
+
+    context 'is correct number' do
+      it { is_expected.to eq published_number}
+    end
   end
 
   describe 'archived' do

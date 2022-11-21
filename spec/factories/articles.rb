@@ -9,10 +9,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require "test_helper"
-
-class ArticleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :article do
+    title { 'title' }
+    body { 'body is must be 10' }
+    status { 'published' }
+  end
 end

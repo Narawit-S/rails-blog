@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
@@ -18,7 +20,7 @@ class ArticlesController < ApplicationController
 
     if @article.save
       redirect_to @article
-    else 
+    else
       render :new, status: :unprocessable_entity
     end
   end
@@ -45,7 +47,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def articles_params
-      params.require(:article).permit(:title, :body, :status)
-    end
+
+  def articles_params
+    params.require(:article).permit(:title, :body, :status)
+  end
 end

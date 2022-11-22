@@ -1,0 +1,69 @@
+require:
+  - rubocop-performance # rubocop-performance gem
+  - rubocop-rails       # rubocop-rails gem
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+  DisplayCopNames: true
+  ExtraDetails: true
+
+Rails:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - Gemfile
+    - Gemfile.lock
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 300
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 55
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 55
+  Exclude:
+    - "app/api/**/*"
+    - "spec/**/*"
+
+Metrics/LineLength:
+  AllowURI: true
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: compact
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"

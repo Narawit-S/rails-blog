@@ -20,8 +20,6 @@ RSpec.describe ArticlesController, type: :controller do
       subject
       expect(assigns(:articles)).to match_array(articles)
     end    
-    
-    
   end
 
   describe 'GET #show' do
@@ -77,6 +75,10 @@ RSpec.describe ArticlesController, type: :controller do
       expect(subject).to redirect_to(article)
     end
 
+    it 'create a new record' do
+      expect { subject }.to change { Article.count }.by(1)
+    end
+
     it 'wrong information' do
       params[:article].except!(:body, :status)
       subject
@@ -117,7 +119,7 @@ RSpec.describe ArticlesController, type: :controller do
       { 
         id: article.id,
         article: { 
-          title: article.title, 
+          title: 'new title', 
           body: article.body, 
           status: article.status
         }
@@ -128,6 +130,10 @@ RSpec.describe ArticlesController, type: :controller do
       subject
       expect(subject.status).to eq(302)
       expect(subject).to redirect_to(article)
+    end
+
+    it 'update attributes' do
+      expect { subject }.to change { article.reload.title }.to 'new title'
     end
 
     it 'wrong information' do
@@ -155,6 +161,11 @@ RSpec.describe ArticlesController, type: :controller do
       subject
       expect(subject).to have_http_status(:see_other)
       expect(subject).to redirect_to(root_path)
+    end
+
+    it 'delete already' do
+      article
+      expect { subject }.to change { Article.count }.by(-1)
     end
 
     it 'not found' do

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+
+  resources :not_found, only: :index
   # Defines the root path route ("/")
   # root "articles#index"
 end

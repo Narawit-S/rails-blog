@@ -41,7 +41,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it 'not found' do
-      params.update({id: 'invalid'})
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end
@@ -78,11 +78,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it 'wrong information' do
-      params.update({ 
-        article: {
-          title: 'only title'
-        }
-      })
+      params[:article].except!(:body, :status)
       subject
       expect(subject).to render_template(:new)
       expect(subject).to have_http_status(:unprocessable_entity)
@@ -106,7 +102,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it 'not found' do
-      params.update({id: 'invalid'})
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end
@@ -135,22 +131,14 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it 'wrong information' do
-      params.update({
-        article: {
-          title: article.title,
-          body: '',
-          status: ''
-        }
-      })
+      params[:article][:body] = ''
       subject
       expect(subject).to render_template(:edit)
       expect(subject).to have_http_status(:unprocessable_entity)
     end
 
     it 'not found' do
-      params.update({
-        id: 'invalid'
-      })
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end
@@ -170,7 +158,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it 'not found' do
-      params.update({id: 'invalid'})
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end

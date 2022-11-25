@@ -25,9 +25,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     it 'not found article' do
-      params.update({
-        article_id: 'invalid'
-      })
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end
@@ -51,17 +49,13 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     it 'not found article' do
-      params.update({
-        article_id: 'invalid'
-      })
+      params['article_id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end
 
     it 'not found comment' do
-      params.update({
-        id: 'invalid'
-      })
+      params['id'] = 'invalid'
       subject
       expect(subject).to redirect_to(not_found_index_path)
     end

@@ -3,9 +3,14 @@
 require 'rails_helper'
 
 shared_examples 'not_authorized' do
+  let(:user) { create(:user) }
 
-  it 'return 302' do
-    subject
-    expect(subject.status).to eq(302)
+  context 'when user not login' do
+    before { sign_out user }
+
+    it 'return 302' do
+      subject
+      expect(subject.status).to eq(302)
+    end    
   end
 end
